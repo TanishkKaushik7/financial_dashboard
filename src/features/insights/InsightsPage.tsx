@@ -37,7 +37,7 @@ const InsightsPage: React.FC = () => {
     <div className="space-y-6 md:space-y-8 px-1">
 
       <Reveal show={s0}>
-        <div className="relative overflow-hidden bg-slate-900 dark:bg-slate-800 rounded-2xl p-6 md:p-8 text-white">
+        <div className="relative overflow-hidden bg-slate-600 dark:bg-slate-800 rounded-2xl p-6 md:p-8 text-white">
           <div className="pointer-events-none absolute -top-16 -right-16 w-56 h-56 bg-emerald-500/20 rounded-full blur-3xl" />
           <div className="pointer-events-none absolute -bottom-16 -left-16 w-56 h-56 bg-blue-500/10 rounded-full blur-3xl" />
 
