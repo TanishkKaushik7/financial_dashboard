@@ -55,12 +55,10 @@ const EditTransactionModal: React.FC<EditModalProps> = ({ transaction, onClose }
         animate-in slide-in-from-bottom-4 sm:slide-in-from-bottom-0 duration-300
       ">
 
-        {/* Drag handle — mobile only */}
         <div className="flex justify-center pt-3 pb-1 sm:hidden">
           <div className="w-10 h-1 rounded-full bg-slate-200 dark:bg-slate-700" />
         </div>
 
-        {/* Header */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/40">
           <div>
             <h3 className="font-bold text-slate-900 dark:text-white text-base leading-tight">
@@ -79,10 +77,8 @@ const EditTransactionModal: React.FC<EditModalProps> = ({ transaction, onClose }
           </button>
         </div>
 
-        {/* Form */}
         <form onSubmit={handleSubmit} className="p-5 space-y-4">
 
-          {/* Description */}
           <Input
             label="Description"
             placeholder="e.g. Monthly Rent"
@@ -91,7 +87,6 @@ const EditTransactionModal: React.FC<EditModalProps> = ({ transaction, onClose }
             required
           />
 
-          {/* Amount + Date */}
           <div className="grid grid-cols-2 gap-4">
             <Input
               label="Amount (₹)"
@@ -111,7 +106,6 @@ const EditTransactionModal: React.FC<EditModalProps> = ({ transaction, onClose }
             />
           </div>
 
-          {/* Type + Category */}
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label className={LABEL_CLASS}>Type</label>
@@ -138,7 +132,6 @@ const EditTransactionModal: React.FC<EditModalProps> = ({ transaction, onClose }
             </div>
           </div>
 
-          {/* Actions */}
           <div className="flex gap-3 pt-2">
             <Button variant="secondary" className="flex-1" onClick={onClose} type="button">
               Cancel

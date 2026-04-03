@@ -1,3 +1,4 @@
+// This component renders an individual insight card, which can represent a positive, negative, or neutral financial insight
 import React from 'react';
 import { AlertCircle, CheckCircle2, Lightbulb, ArrowRight } from 'lucide-react';
 import type { FinanceInsight } from '../../../types';
@@ -41,15 +42,12 @@ const InsightCard: React.FC<InsightCardProps> = ({ insight }) => {
     >
       <div className="flex items-start gap-3 sm:gap-4">
 
-        {/* Icon badge */}
         <div className={`p-2.5 rounded-xl shrink-0 ${config.bgColor} ${config.color}`}>
           <Icon className="w-5 h-5" />
         </div>
 
-        {/* Content */}
         <div className="flex-1 min-w-0">
 
-          {/* Title row */}
           <div className="flex flex-wrap items-start justify-between gap-x-3 gap-y-1 mb-1.5">
             <h4 className="font-bold text-slate-900 dark:text-white text-sm leading-snug">
               {insight.title}
@@ -61,12 +59,10 @@ const InsightCard: React.FC<InsightCardProps> = ({ insight }) => {
             )}
           </div>
 
-          {/* Description */}
           <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-3">
             {insight.description}
           </p>
 
-          {/* Action */}
           <button
             className={`
               inline-flex items-center gap-1 text-xs font-semibold

@@ -1,3 +1,5 @@
+// This file defines the InsightsPage component.
+// It uses the getInsights function to generate insights based on transaction data and renders them using InsightCard components.
 import React from 'react';
 import { useAppStore } from '../../store/useAppStore';
 import { getInsights } from '../../utils/calculations';
@@ -34,7 +36,6 @@ const InsightsPage: React.FC = () => {
   return (
     <div className="space-y-6 md:space-y-8 px-1">
 
-      {/* 1. Hero Header — already dark bg, minimal changes */}
       <Reveal show={s0}>
         <div className="relative overflow-hidden bg-slate-900 dark:bg-slate-800 rounded-2xl p-6 md:p-8 text-white">
           <div className="pointer-events-none absolute -top-16 -right-16 w-56 h-56 bg-emerald-500/20 rounded-full blur-3xl" />
@@ -67,7 +68,6 @@ const InsightsPage: React.FC = () => {
         </div>
       </Reveal>
 
-      {/* 2. Insights Grid */}
       <Reveal show={s1}>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
           {insights.length > 0 ? (
@@ -92,7 +92,6 @@ const InsightsPage: React.FC = () => {
         </div>
       </Reveal>
 
-      {/* 3. Education Cards */}
       <Reveal show={s2}>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 pt-6 border-t border-slate-100 dark:border-slate-800">
           {[

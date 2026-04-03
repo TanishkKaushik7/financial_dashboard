@@ -1,3 +1,4 @@
+// This component renders the table of transactions, including filtering, exporting, and admin actions.
 import { useState } from 'react';
 import {
   Trash2, Edit3, ArrowUpCircle, ArrowDownCircle, SearchX, Download,
@@ -12,14 +13,13 @@ import DeleteTransactionModal from './DeleteTransactionModal';
 
 const TH_CLASS = 'px-4 md:px-6 py-3.5 text-xs font-bold text-slate-400 dark:text-slate-600 uppercase tracking-widest whitespace-nowrap';
 
-// ─── CSV Export ───────────────────────────────────────────────────────────────
 
 const exportToCSV = (transactions: Transaction[]) => {
   const headers = ['Date', 'Description', 'Category', 'Type', 'Amount (INR)'];
 
   const rows = transactions.map((t) => [
-    t.date,                                                          // raw YYYY-MM-DD — Excel parses this perfectly
-    `"${t.description.replace(/"/g, '""')}"`,                       // escape inner quotes
+    t.date,                                                         
+    `"${t.description.replace(/"/g, '""')}"`,                       
     t.category,
     t.type.charAt(0).toUpperCase() + t.type.slice(1),
     t.type === 'income' ? t.amount.toFixed(2) : (-t.amount).toFixed(2),
@@ -27,7 +27,6 @@ const exportToCSV = (transactions: Transaction[]) => {
 
   const csv = [headers, ...rows].map((r) => r.join(',')).join('\n');
 
-  // UTF-8 BOM (\uFEFF) tells Excel to read the file as UTF-8
   const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
   const url  = URL.createObjectURL(blob);
 
@@ -38,7 +37,6 @@ const exportToCSV = (transactions: Transaction[]) => {
 
   URL.revokeObjectURL(url);
 };
-// ─── Component ────────────────────────────────────────────────────────────────
 
 const TransactionTable = () => {
   const { transactions, userRole, filters } = useAppStore();
@@ -73,7 +71,6 @@ const TransactionTable = () => {
     <>
       <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
 
-        {/* ── Table toolbar ── */}
         <div className="flex items-center justify-between px-4 md:px-6 py-3 border-b border-slate-100 dark:border-slate-800">
           <p className="text-xs text-slate-400 dark:text-slate-500 tabular-nums">
             {filtered.length} transaction{filtered.length !== 1 ? 's' : ''}
@@ -109,7 +106,6 @@ const TransactionTable = () => {
               {filtered.map((t) => (
                 <tr key={t.id} className="hover:bg-slate-50/60 dark:hover:bg-slate-800/40 transition-colors group">
 
-                  {/* Description */}
                   <td className="px-4 md:px-6 py-3.5">
                     <div className="flex items-center gap-3 min-w-0">
                       <div className={`p-1.5 rounded-lg shrink-0 ${
@@ -133,22 +129,18 @@ const TransactionTable = () => {
                     </div>
                   </td>
 
-                  {/* Category */}
                   <td className="px-4 md:px-6 py-3.5 hidden sm:table-cell">
                     <Badge variant="neutral">{t.category}</Badge>
                   </td>
 
-                  {/* Date */}
                   <td className="px-4 md:px-6 py-3.5 hidden md:table-cell text-sm text-slate-400 dark:text-slate-500 whitespace-nowrap">
                     {formatDate(t.date)}
                   </td>
 
-                  {/* Amount */}
                   <td className={`px-4 md:px-6 py-3.5 text-sm font-bold text-right tabular-nums whitespace-nowrap ${getAmountColorClass(t.type)}`}>
                     {t.type === 'income' ? '+' : '−'}&nbsp;{formatCurrency(t.amount)}
                   </td>
 
-                  {/* Actions */}
                   {isAdmin && (
                     <td className="px-4 md:px-6 py-3.5">
                       <div className="flex items-center justify-center gap-1 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-150">

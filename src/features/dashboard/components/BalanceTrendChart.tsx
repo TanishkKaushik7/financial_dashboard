@@ -1,3 +1,4 @@
+// This component renders the Balance Trend chart on the dashboard, showing income vs expenses over time.
 import { useState, useRef, useEffect } from 'react';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid,
@@ -9,7 +10,6 @@ import { formatCurrency, formatDate } from '../../../utils/formatters';
 import { Card } from '../../../components/ui/Card';
 import { useTheme } from '../../../context/ThemeContext';
 
-// ─── Custom Tooltip ───────────────────────────────────────────────────────────
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (!active || !payload?.length) return null;
@@ -36,7 +36,6 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   );
 };
 
-// ─── Animated Legend ──────────────────────────────────────────────────────────
 
 const AnimatedLegend = ({ visible }: { visible: boolean }) => (
   <div
@@ -58,7 +57,6 @@ const AnimatedLegend = ({ visible }: { visible: boolean }) => (
   </div>
 );
 
-// ─── Custom Bar Shape ─────────────────────────────────────────────────────────
 
 const GlowBar = (props: any) => {
   const { x, y, width, height, fill, isHovered } = props;
@@ -86,7 +84,6 @@ const GlowBar = (props: any) => {
   );
 };
 
-// ─── Main Chart ───────────────────────────────────────────────────────────────
 
 const BalanceTrendChart = () => {
   const { transactions } = useAppStore();
@@ -108,7 +105,6 @@ const BalanceTrendChart = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Theme-aware colors for recharts elements
   const isDark       = theme === 'dark';
   const gridColor    = isDark ? '#1e293b' : '#f1f5f9';
   const tickColor    = isDark ? '#475569' : '#94a3b8';

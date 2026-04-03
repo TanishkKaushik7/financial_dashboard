@@ -1,4 +1,5 @@
-// src/utils/calculations.ts
+// This file contains utility functions for financial calculations and data transformations.
+//  Calculating transactions, preparing data for charts, and generating insights based on financial data.
 import type { 
   Transaction, 
   FinancialSummary, 
@@ -7,9 +8,6 @@ import type {
   FinanceInsight 
 } from '../types';
 
-/**
- * Calculates the top-level totals for the summary cards.
- */
 export const getFinancialSummary = (transactions: Transaction[]): FinancialSummary => {
   const totalIncome = transactions
     .filter((t) => t.type === 'income')
@@ -26,9 +24,6 @@ export const getFinancialSummary = (transactions: Transaction[]): FinancialSumma
   };
 };
 
-/**
- * Groups expenses by category for the Pie/Doughnut chart.
- */
 export const getCategoryData = (transactions: Transaction[]): CategoryData[] => {
   const expenseMap: Record<string, number> = {};
 
@@ -44,10 +39,6 @@ export const getCategoryData = (transactions: Transaction[]): CategoryData[] => 
   }));
 };
 
-/**
- * Groups transactions by date for the Trend line/bar chart.
- * This sorts them chronologically.
- */
 export const getTimeSeriesData = (transactions: Transaction[]): TimeSeriesData[] => {
   const dailyMap: Record<string, { income: number; expenses: number }> = {};
 
@@ -70,14 +61,10 @@ export const getTimeSeriesData = (transactions: Transaction[]): TimeSeriesData[]
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 };
 
-/**
- * Generates automated insights based on the transaction history.
- */
 export const getInsights = (transactions: Transaction[]): FinanceInsight[] => {
   const insights: FinanceInsight[] = [];
   const { totalIncome, totalExpenses } = getFinancialSummary(transactions);
 
-  // 1. Savings Rate Insight
   const savingsRate = totalIncome > 0 ? ((totalIncome - totalExpenses) / totalIncome) * 100 : 0;
   insights.push({
     title: 'Savings Rate',
@@ -86,7 +73,6 @@ export const getInsights = (transactions: Transaction[]): FinanceInsight[] => {
     value: `${savingsRate.toFixed(0)}%`,
   });
 
-  // 2. Highest Spending Category
   const categoryData = getCategoryData(transactions);
   if (categoryData.length > 0) {
     const topCategory = categoryData.reduce((prev, current) => 
@@ -100,7 +86,6 @@ export const getInsights = (transactions: Transaction[]): FinanceInsight[] => {
     });
   }
 
-  // 3. Simple Alert
   if (totalExpenses > totalIncome) {
     insights.push({
       title: 'Spending Alert',

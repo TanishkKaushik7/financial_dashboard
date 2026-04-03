@@ -1,3 +1,5 @@
+// This file defines the main DashboardPage component.
+// It composes  SummaryCards, BalanceTrendChart, and SpendingBreakdownChart to create the dashboard  
 import React, { useEffect, useState } from 'react';
 import SummaryCards from './components/SummaryCards';
 import BalanceTrendChart from './components/BalanceTrendChart';
@@ -39,7 +41,6 @@ const DashboardPage: React.FC = () => {
   return (
     <div className="space-y-6 md:space-y-8 px-1">
 
-      {/* 1. Header */}
       <Reveal show={s0}>
         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
           <div className="space-y-1 min-w-0">
@@ -66,12 +67,10 @@ const DashboardPage: React.FC = () => {
         </div>
       </Reveal>
 
-      {/* 2. Summary Cards */}
       <Reveal show={s1}>
         <SummaryCards />
       </Reveal>
 
-      {/* 3. Charts */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-8">
         <Reveal show={s2} className="min-w-0">
           <BalanceTrendChart />
@@ -81,7 +80,6 @@ const DashboardPage: React.FC = () => {
         </Reveal>
       </div>
 
-      {/* 4. Footer CTA — already dark bg, no changes needed */}
       <Reveal show={s3}>
         <div className="relative bg-slate-900 dark:bg-slate-800 rounded-2xl px-6 py-5 md:px-8 md:py-6 text-white overflow-hidden">
           <div className="pointer-events-none absolute -right-6 -top-6 w-36 h-36 bg-emerald-500/10 rounded-full blur-3xl" />

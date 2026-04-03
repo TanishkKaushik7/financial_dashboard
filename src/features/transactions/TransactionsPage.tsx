@@ -1,3 +1,5 @@
+// This component is the main page for managing transactions.
+// It includes the header, filters, transaction table, and the form for adding/editing transactions. 
 import React, { useState } from 'react';
 import { useAppStore } from '../../store/useAppStore';
 import TransactionTable from './components/TransactionTable';
@@ -53,7 +55,6 @@ const TransactionsPage: React.FC = () => {
   return (
     <div className="space-y-6 px-1">
 
-      {/* 1. Header */}
       <Reveal show={s0}>
         <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
           <div className="space-y-1 min-w-0">
@@ -88,7 +89,6 @@ const TransactionsPage: React.FC = () => {
         </div>
       </Reveal>
 
-      {/* 2. Inline Form */}
       {isAdmin && (
         <FormReveal show={isAdding}>
           <div className="pb-2">
@@ -97,12 +97,10 @@ const TransactionsPage: React.FC = () => {
         </FormReveal>
       )}
 
-      {/* 3. Filters */}
       <Reveal show={s1}>
         <TransactionFilters />
       </Reveal>
 
-      {/* 4. Table */}
       <Reveal show={s2}>
         <TransactionTable />
       </Reveal>

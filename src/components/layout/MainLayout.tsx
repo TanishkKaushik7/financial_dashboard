@@ -1,3 +1,4 @@
+// This file defines the main layout of the application, including the sidebar, header, and footer. 
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar';

@@ -34,25 +34,20 @@ const DeleteTransactionModal: React.FC<DeleteModalProps> = ({ transaction, onClo
         animate-in slide-in-from-bottom-4 sm:slide-in-from-bottom-0 duration-300
       ">
 
-        {/* Drag handle — mobile only */}
         <div className="flex justify-center pt-3 pb-1 sm:hidden">
           <div className="w-10 h-1 rounded-full bg-slate-200 dark:bg-slate-700" />
         </div>
 
-        {/* Content */}
         <div className="px-6 pt-4 pb-6 sm:pt-6 text-center">
 
-          {/* Icon */}
           <div className="w-14 h-14 bg-rose-50 dark:bg-rose-950 text-rose-600 dark:text-rose-400 rounded-full flex items-center justify-center mx-auto mb-4">
             <AlertCircle className="w-7 h-7" />
           </div>
 
-          {/* Title */}
           <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
             Delete Transaction?
           </h3>
 
-          {/* Description */}
           <p className="text-sm text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">
             Are you sure you want to remove{' '}
             <span className="font-bold text-slate-700 dark:text-slate-200">
@@ -65,7 +60,6 @@ const DeleteTransactionModal: React.FC<DeleteModalProps> = ({ transaction, onClo
             ? This action cannot be undone.
           </p>
 
-          {/* Actions */}
           <div className="flex flex-col gap-2">
             <Button
               variant="danger"
