@@ -38,7 +38,24 @@ export const getCategoryData = (transactions: Transaction[]): CategoryData[] => 
     value,
   }));
 };
+export const getMonthlyTrendData = (transactions: Transaction[]) => {
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                  'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
+  const income   = Array(12).fill(0);
+  const expenses = Array(12).fill(0);
+
+  transactions.forEach((t) => {
+    const month = new Date(t.date).getMonth();
+    if (t.type === 'income') {
+      income[month] += t.amount;
+    } else {
+      expenses[month] += t.amount;
+    }
+  });
+
+  return { months, income, expenses };
+};
 export const getTimeSeriesData = (transactions: Transaction[]): TimeSeriesData[] => {
   const dailyMap: Record<string, { income: number; expenses: number }> = {};
 

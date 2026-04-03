@@ -29,6 +29,7 @@ Zoryn is a client-side financial dashboard that runs entirely in the browser wit
 - Summary cards showing total balance, total income, and total expenses
 - Balance trend chart displaying income versus expenses over time (bar chart)
 - Spending breakdown chart by category (donut chart)
+- Monthly trend line chart showing income versus expenses across all 12 months
 - Staggered entrance animations on page load
 
 ### Transactions
@@ -72,6 +73,7 @@ Zoryn is a client-side financial dashboard that runs entirely in the browser wit
 | State management | Zustand |
 | Routing | React Router v6 |
 | Charts | Recharts |
+| Charts | Recharts, Chart.js |
 | Icons | Lucide React |
 | Build tool | Vite |
 | Deployment | Vercel |
@@ -103,6 +105,7 @@ src/
         SummaryCards.tsx
         BalanceTrendChart.tsx
         SpendingBreakdownChart.tsx
+        MonthWiseLineGraph.tsx 
     transactions/
       TransactionsPage.tsx
       components/
@@ -229,6 +232,12 @@ Tailwind v4 removed the `darkMode` config key. Dark mode is enabled via `@custom
 ### Recharts and dark mode
 
 Recharts renders SVG elements with inline styles, which Tailwind utility classes cannot override. Theme-aware colours for grid lines, axis ticks, and tooltip backgrounds are derived from the `useTheme` hook and passed as JavaScript values directly to chart props.
+
+### Chart.js and the monthly trend chart
+
+The monthly trend line chart uses Chart.js via react-chartjs-2 rather than Recharts. Chart.js was chosen here because its line chart with area fill and smooth bezier curves (`tension: 0.4`) produces a cleaner visual for year-over-year trend data than Recharts' equivalent. The same dark mode approach applies — Chart.js renders to a `<canvas>` element so Tailwind classes cannot reach its internals. Theme-aware colours for grid lines, axis ticks, legend labels, and tooltip backgrounds are derived from `useTheme` and passed as JavaScript values directly into the `options` object.
+
+The monthly data itself is derived from real transactions via `getMonthlyTrendData` in `calculations.ts`, which groups transactions by the month of their date and sums income and expenses into two 12-element arrays. This means the chart reacts automatically when transactions are added or edited in Admin mode — no manual data wiring needed.
 
 ### Portals for modals
 

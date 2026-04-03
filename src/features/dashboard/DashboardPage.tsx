@@ -1,9 +1,8 @@
-// This file defines the main DashboardPage component.
-// It composes  SummaryCards, BalanceTrendChart, and SpendingBreakdownChart to create the dashboard  
 import React, { useEffect, useState } from 'react';
 import SummaryCards from './components/SummaryCards';
 import BalanceTrendChart from './components/BalanceTrendChart';
 import SpendingBreakdownChart from './components/SpendingBreakdownChart';
+import MonthWiseLineGraph from './components/MonthWiseLineGraph';
 import { useAppStore } from '../../store/useAppStore';
 import { Badge } from '../../components/ui/Badge';
 import { LayoutDashboard, Calendar, Sparkles } from 'lucide-react';
@@ -37,10 +36,13 @@ const DashboardPage: React.FC = () => {
   const s1 = useDelay(120);
   const s2 = useDelay(260);
   const s3 = useDelay(400);
+  const s4 = useDelay(520);
+  const s5 = useDelay(640);
 
   return (
     <div className="space-y-6 md:space-y-8 px-1">
 
+      {/* 1. Header */}
       <Reveal show={s0}>
         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
           <div className="space-y-1 min-w-0">
@@ -67,10 +69,12 @@ const DashboardPage: React.FC = () => {
         </div>
       </Reveal>
 
+      {/* 2. Summary Cards */}
       <Reveal show={s1}>
         <SummaryCards />
       </Reveal>
 
+      {/* 3. Bar chart + Donut chart */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-8">
         <Reveal show={s2} className="min-w-0">
           <BalanceTrendChart />
@@ -80,7 +84,13 @@ const DashboardPage: React.FC = () => {
         </Reveal>
       </div>
 
-      <Reveal show={s3}>
+      {/* 4. Monthly trend line graph — full width */}
+      <Reveal show={s4}>
+        <MonthWiseLineGraph />
+      </Reveal>
+
+      {/* 5. Footer CTA */}
+      <Reveal show={s5}>
         <div className="relative bg-slate-900 dark:bg-slate-800 rounded-2xl px-6 py-5 md:px-8 md:py-6 text-white overflow-hidden">
           <div className="pointer-events-none absolute -right-6 -top-6 w-36 h-36 bg-emerald-500/10 rounded-full blur-3xl" />
           <div className="pointer-events-none absolute -left-4 -bottom-4 w-24 h-24 bg-sky-500/10 rounded-full blur-2xl" />
@@ -103,6 +113,7 @@ const DashboardPage: React.FC = () => {
           </div>
         </div>
       </Reveal>
+
     </div>
   );
 };
