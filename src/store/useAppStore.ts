@@ -1,3 +1,5 @@
+// This file defines the global state management for the financial dashboard application using Zustand.
+// It includes transaction data, user role, and filter states, along with actions to manipulate these states.
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import type { 
@@ -9,24 +11,20 @@ import type {
 import { initialTransactions } from '../data/mockData';
 
 interface AppState {
-  // Data State
   transactions: Transaction[];
   userRole: UserRole;
   
-  // Filter State
   filters: {
     search: string;
     category: TransactionCategory | 'All';
     type: TransactionType | 'All';
   };
 
-  // Actions
   setRole: (role: UserRole) => void;
   setSearch: (query: string) => void;
   setCategoryFilter: (category: TransactionCategory | 'All') => void;
   setTypeFilter: (type: TransactionType | 'All') => void;
   
-  // Transaction Actions (RBAC protected)
   addTransaction: (transaction: Transaction) => void;
   deleteTransaction: (id: string) => void;
   editTransaction: (updatedTransaction: Transaction) => void;
@@ -35,16 +33,14 @@ interface AppState {
 export const useAppStore = create<AppState>()(
   persist(
     (set) => ({
-      // Initial State
       transactions: initialTransactions,
-      userRole: 'ADMIN', // Defaulting to Admin for easier development
+      userRole: 'ADMIN', 
       filters: {
         search: '',
         category: 'All',
         type: 'All',
       },
 
-      // Filter Actions
       setRole: (role) => set({ userRole: role }),
       setSearch: (query) => 
         set((state) => ({ filters: { ...state.filters, search: query } })),
@@ -53,7 +49,6 @@ export const useAppStore = create<AppState>()(
       setTypeFilter: (type) => 
         set((state) => ({ filters: { ...state.filters, type } })),
 
-      // Data Actions with basic RBAC checks
       addTransaction: (transaction) => set((state) => {
         if (state.userRole !== 'ADMIN') return state;
         return { transactions: [transaction, ...state.transactions] };
@@ -76,7 +71,7 @@ export const useAppStore = create<AppState>()(
       }),
     }),
     {
-      name: 'finance-storage', // Key for LocalStorage persistence
+      name: 'finance-storage', 
     }
   )
 );

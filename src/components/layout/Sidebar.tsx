@@ -1,3 +1,5 @@
+// This component defines the Sidebar of the dashboard.
+// navigation links, mobile responsiveness, theme toggle, and user role switcher.
 import { useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import {
@@ -47,7 +49,6 @@ const Brand = () => (
   </div>
 );
 
-// ─── Role switcher ────────────────────────────────────────────────────────────
 
 const MobileRoleSwitcher = () => {
   const { userRole, setRole } = useAppStore();
@@ -88,7 +89,6 @@ const MobileRoleSwitcher = () => {
   );
 };
 
-// ─── Theme toggle ─────────────────────────────────────────────────────────────
 
 const MobileThemeToggle = () => {
   const { theme, toggle } = useTheme();
@@ -117,7 +117,6 @@ const MobileThemeToggle = () => {
           <span>{isDark ? 'Light Mode' : 'Dark Mode'}</span>
         </div>
 
-        {/* Pill indicator */}
         <div className={`
           relative w-9 h-5 rounded-full transition-colors duration-300 shrink-0
           ${isDark ? 'bg-emerald-500' : 'bg-slate-200'}
@@ -133,7 +132,6 @@ const MobileThemeToggle = () => {
   );
 };
 
-// ─── Sidebar ─────────────────────────────────────────────────────────────────
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -149,7 +147,6 @@ const Sidebar = () => {
 
   return (
     <>
-      {/* Desktop sidebar */}
       <aside className="hidden md:flex w-64 h-screen bg-white dark:bg-slate-900 border-r border-slate-100 dark:border-slate-800 flex-col sticky top-0 shrink-0">
         <div className="px-5 py-5 border-b border-slate-100 dark:border-slate-800">
           <Brand />
@@ -157,7 +154,6 @@ const Sidebar = () => {
         <NavContent />
       </aside>
 
-      {/* Mobile topbar */}
       <div className="md:hidden fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-4 h-14 bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800">
         <Brand />
         <button
@@ -169,10 +165,8 @@ const Sidebar = () => {
         </button>
       </div>
 
-      {/* Mobile spacer */}
       <div className="md:hidden h-14 shrink-0" />
 
-      {/* Backdrop */}
       {isOpen && (
         <div
           className="md:hidden fixed inset-0 z-40 bg-slate-900/40 backdrop-blur-sm"
@@ -181,7 +175,6 @@ const Sidebar = () => {
         />
       )}
 
-      {/* Drawer panel */}
       <div
         className={`
           md:hidden fixed top-0 left-0 z-50 h-full w-72 max-w-[85vw]
@@ -193,7 +186,6 @@ const Sidebar = () => {
         role="dialog"
         aria-label="Navigation menu"
       >
-        {/* Drawer header */}
         <div className="px-5 py-4 flex items-center justify-between border-b border-slate-100 dark:border-slate-800">
           <Brand />
           <button
@@ -205,10 +197,8 @@ const Sidebar = () => {
           </button>
         </div>
 
-        {/* Nav links */}
         <NavContent onNavigate={close} />
 
-        {/* Bottom controls — role switcher + theme toggle */}
         <MobileRoleSwitcher />
         <MobileThemeToggle />
       </div>

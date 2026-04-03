@@ -1,3 +1,5 @@
+// This component provides filters for the transactions list.
+// It includes a search bar, category dropdown, type dropdown, and a reset button to clear all filters.
 import { Search, XCircle } from 'lucide-react';
 import { useAppStore } from '../../../store/useAppStore';
 import { Input } from '../../../components/ui/Input';
@@ -34,7 +36,6 @@ const TransactionFilters = () => {
     <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
       <div className="flex flex-col sm:flex-row sm:items-end gap-3 md:gap-4">
 
-        {/* 1. Search */}
         <div className="flex-1 min-w-0">
           <label className="block text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-1.5 ml-0.5">
             Search
@@ -50,7 +51,6 @@ const TransactionFilters = () => {
           </div>
         </div>
 
-        {/* 2. Category */}
         <div className="w-full sm:w-44 shrink-0">
           <label className="block text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-1.5 ml-0.5">
             Category
@@ -66,7 +66,6 @@ const TransactionFilters = () => {
           </select>
         </div>
 
-        {/* 3. Type */}
         <div className="w-full sm:w-36 shrink-0">
           <label className="block text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-1.5 ml-0.5">
             Type

@@ -1,3 +1,4 @@
+// This component renders the Spending Breakdown chart on the dashboard.
 import { useState, useRef, useEffect } from 'react';
 import {
   PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Sector,
@@ -13,7 +14,6 @@ const COLORS = [
   '#8b5cf6', '#06b6d4', '#ec4899', '#94a3b8',
 ];
 
-// ─── Tooltip ──────────────────────────────────────────────────────────────────
 
 const CustomTooltip = ({ active, payload }: any) => {
   if (!active || !payload?.length) return null;
@@ -39,7 +39,6 @@ const CustomTooltip = ({ active, payload }: any) => {
   );
 };
 
-// ─── Active Slice ─────────────────────────────────────────────────────────────
 
 const ActiveSlice = (props: any) => {
   const { cx, cy, innerRadius, outerRadius, startAngle, endAngle, fill } = props;
@@ -63,7 +62,6 @@ const ActiveSlice = (props: any) => {
   );
 };
 
-// ─── Animated Legend ──────────────────────────────────────────────────────────
 
 const AnimatedLegend = ({
   data, activeIndex, onHover, visible, isDark,
@@ -116,7 +114,6 @@ const AnimatedLegend = ({
   </ul>
 );
 
-// ─── Total Bar ────────────────────────────────────────────────────────────────
 
 const TotalBar = ({
   activeIndex, data, total, visible, isDark,
@@ -163,7 +160,6 @@ const TotalBar = ({
   );
 };
 
-// ─── Main Chart ───────────────────────────────────────────────────────────────
 
 const SpendingBreakdownChart = () => {
   const { transactions } = useAppStore();
@@ -244,7 +240,6 @@ const SpendingBreakdownChart = () => {
               </ResponsiveContainer>
             </div>
 
-            {/* Legend */}
             <div className="w-128px shrink-0 flex items-center">
               <AnimatedLegend
                 data={data}

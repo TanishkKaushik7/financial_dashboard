@@ -1,3 +1,4 @@
+// This component renders the summary cards at the top of the dashboard, showing total balance, income, and expenses.
 import {
   ArrowUpRight,
   ArrowDownRight,
@@ -52,7 +53,6 @@ const SummaryCards = () => {
           className="hover:shadow-md transition-shadow duration-200 flex flex-col justify-between min-w-0"
         >
           <div className="flex items-start justify-between gap-4">
-            {/* Left: Text */}
             <div className="min-w-0 flex-1">
               <p className="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wide mb-1.5 truncate">
                 {stat.title}
@@ -65,7 +65,6 @@ const SummaryCards = () => {
               </p>
             </div>
 
-            {/* Right: Icon badge */}
             <div className={`p-2.5 rounded-xl shrink-0 ${stat.bgColor} ${stat.color}`}>
               <stat.icon className="w-5 h-5" />
             </div>

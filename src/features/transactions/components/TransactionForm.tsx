@@ -1,3 +1,4 @@
+// This component renders the form for adding new transactions. 
 import React, { useState } from 'react';
 import { useAppStore } from '../../../store/useAppStore';
 import { Button } from '../../../components/ui/Button';
@@ -57,7 +58,6 @@ const TransactionForm = ({ onClose }: { onClose?: () => void }) => {
   return (
     <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
 
-      {/* Header */}
       <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 dark:border-slate-800">
         <div>
           <h3 className="text-base font-bold text-slate-900 dark:text-white leading-tight">
@@ -80,10 +80,8 @@ const TransactionForm = ({ onClose }: { onClose?: () => void }) => {
         )}
       </div>
 
-      {/* Body */}
       <form onSubmit={handleSubmit} className="p-6 space-y-5">
 
-        {/* Row 1: Description + Amount */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Input
             label="Description"
@@ -104,7 +102,6 @@ const TransactionForm = ({ onClose }: { onClose?: () => void }) => {
           />
         </div>
 
-        {/* Row 2: Type + Category + Date */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div>
             <label className={LABEL_CLASS}>Type</label>
@@ -139,7 +136,6 @@ const TransactionForm = ({ onClose }: { onClose?: () => void }) => {
           />
         </div>
 
-        {/* Footer Actions */}
         <div className="flex flex-col-reverse sm:flex-row gap-3 pt-1">
           {onClose && (
             <Button variant="secondary" onClick={onClose} type="button" className="sm:w-auto">

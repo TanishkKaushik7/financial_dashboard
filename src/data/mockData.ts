@@ -1,18 +1,16 @@
 import {type Transaction } from '../types';
 
-const generateId = () => Math.random().toString(36).substr(2, 9);
-
 const getDate = (daysAgo: number) => {
   const date = new Date();
   date.setDate(date.getDate() - daysAgo);
-  return date.toISOString().split('T')[0]; // Returns YYYY-MM-DD
+  return date.toISOString().split('T')[0]; 
 };
 
 export const initialTransactions: Transaction[] = [
   // --- INCOMES ---
   {
     id: 't1',
-    date: getDate(0), // Today
+    date: getDate(0), 
     amount: 500000,
     category: 'Salary',
     type: 'income',
